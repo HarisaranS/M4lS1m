@@ -24,7 +24,7 @@ public class Attacker {
         }
     }
 
-    private static void sendPayload(String type) {
+    /*private static void sendPayload(String type) {
         try (Socket s = new Socket("localhost", VICTIM_PORT);
              ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream())) {
             Payload p = new Payload(type, type.toLowerCase() + "_payload");
@@ -58,7 +58,7 @@ public class Attacker {
                 if ("exit".equalsIgnoreCase(cmd)) break;
             }
         } catch (IOException e) {
-            System.out.println("[ATTACKER] shell error: " + e.getMessage());
+            System.out.println("[ATTACKER] shell error: " + e.getMessage());*/
         }
     }
 }
