@@ -7,7 +7,7 @@ import java.util.TimerTask;
 
 public class C2Server {
     public static void main(String[] args) throws Exception {
-        final int PORT = 7000;
+        final int PORT = PORT_NUMBER;
         ServerSocket ss = new ServerSocket(PORT);
         System.out.println("=== C2 Server === listening on port " + PORT);
 
