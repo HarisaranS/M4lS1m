@@ -5,8 +5,8 @@ import javax.swing.*;
 
 public class Detection {
     public static void main(String[] args) throws Exception {
-        final int PORT = 8000;
-        final String victimControlHost = "localhost";
+        final int PORT = PORT;
+        final String victimControlHost = "LOOPBACK_IP";
         final int victimControlPort = PORT;
 
         ServerSocket ss = new ServerSocket(PORT);
@@ -25,6 +25,7 @@ public class Detection {
                             line = "[HIGH] Reverse shell activity detected → " + line;
                         }
 
+                        
                         // Popup for HIGH severity
                         if (line.toUpperCase().contains("HIGH")) {
                             final String detectedLine = line; // capture final copy
