@@ -14,11 +14,11 @@ import java.util.stream.Stream;
 import java.awt.Color;
 
 public class Victim {
-    private static final int PAYLOAD_PORT = 6000;   // attacker -> victim (Payload objects)
-    private static final int C2_PORT = 7000;        // victim -> c2 (text lines)
-    private static final int DETECT_PORT = 8000;    // victim -> detection (text lines)
-    private static final int CONTROL_PORT = 6200;   // detection -> victim control (BLOCK)
-    private static final int CMD_PORT = 6100;       // attacker -> victim whitelisted shell
+    private static final int PAYLOAD_PORT = PORT;   // attacker -> victim (Payload objects)
+    private static final int C2_PORT = PORT;        // victim -> c2 (text lines)
+    private static final int DETECT_PORT = PORT;    // victim -> detection (text lines)
+    private static final int CONTROL_PORT = PORT;   // detection -> victim control (BLOCK)
+    private static final int CMD_PORT = PORTGGGGG;       // attacker -> victim whitelisted shell
 
     private volatile boolean blocked = false;
     private final Path SANDBOX = Paths.get("safe_sandbox").toAbsolutePath().normalize();
