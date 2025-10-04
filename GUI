@@ -1,0 +1,30 @@
+
+====================  MEMGUARD GUI PLAN  ====================
+
+  MainGUI         -->   Main Application with network server
+  AttackerPanel   -->   Attack Control interface
+  VictimPanel     -->   Victim System Monitoring
+  C2ServerPanel   -->   Command & Control Panel
+  DetectionPanel  -->   security detection system
+  LogsPanel       -->   Centrailed logging (optional)
+  ShellDialog     -->   Interactive shell interface
+  PayloadSim      -->   Attack Payloads
+
+Attack Simulation :
+
+  Virus Button        -->  File deletion simulation
+  Keylogger Button    -->  Keystrokes Capture
+  Randsomware Button  -->  Encrypt files
+  Botnet Button       -->  C2 Communication
+  Shell Button        -->  Reverse shell
+
+Tech Stack :
+
+  Language      : java
+  GUI           : java Swing
+  Networking    : Java Socket
+  Concurrency   : ExecutorService,Threads
+  Data Handling : java Serialization
+
+
+****************************************************************
