@@ -1,14 +1,13 @@
 
 ====================  MEMGUARD GUI PLAN  ====================
 
-  MainGUI         -->   Main Application with network server
   AttackerPanel   -->   Attack Control interface
   VictimPanel     -->   Victim System Monitoring
   C2ServerPanel   -->   Command & Control Panel
   DetectionPanel  -->   security detection system
   LogsPanel       -->   Centrailed logging (optional)
-  ShellDialog     -->   Interactive shell interface
-  PayloadSim      -->   Attack Payloads
+  ShellPanel      -->   Interactive shell interface
+  KeyloggingPanel -->   capturing the keystrokes
 
 Attack Simulation :
 
@@ -25,6 +24,14 @@ Tech Stack :
   Networking    : Java Socket
   Concurrency   : ExecutorService,Threads
   Data Handling : java Serialization
+
+Working : 
+
+  Virus -> Deleting a file , popup from detection panel ,popup from c2 panel
+  Keylogger -> open the shell for the victim , type anything captured in C2
+  Randsomware -> encrypt the files , view fullscreen locked randsom bitcoin page
+  Botnet -> limited popup continuosly 
+  ReverseShell -> getting a victim shell and interactions
 
 
 ****************************************************************
