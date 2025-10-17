@@ -5,9 +5,9 @@
   VictimPanel     -->   Victim System Monitoring
   C2ServerPanel   -->   Command & Control Panel
   DetectionPanel  -->   security detection system
-  LogsPanel       -->   Centrailed logging (optional)
   ShellPanel      -->   Interactive shell interface
   KeyloggingPanel -->   capturing the keystrokes
+  DBLogger        -->   Mysql DB (with dedicated user access)
 
 Attack Simulation :
 
@@ -22,7 +22,7 @@ Tech Stack :
   Language      : java
   GUI           : java Swing
   Networking    : Java Socket
-  Concurrency   : ExecutorService,Threads
+  Concurrency   : EDT
   Data Handling : java Serialization
 
 Working : 
@@ -32,6 +32,7 @@ Working :
   Randsomware -> encrypt the files , view fullscreen locked randsom bitcoin page
   Botnet -> limited popup continuosly 
   ReverseShell -> getting a victim shell and interactions
+
 
 
 ****************************************************************
