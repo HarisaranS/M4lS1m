@@ -1,38 +1,36 @@
+==================== MEMGUARD GUI PLAN ====================
 
-====================  MEMGUARD GUI PLAN  ====================
+AttackerPanel --> Attack Control interface
+VictimPanel --> Victim System Monitoring
+C2ServerPanel --> Command & Control Panel
+DetectionPanel --> Security detection / alerts
+ShellPanel --> Interactive shell interface
+KeyloggingPanel --> Capture/display keystrokes
+DBLogger --> MySQL logging (dedicated DB user)
 
-  AttackerPanel   -->   Attack Control interface
-  VictimPanel     -->   Victim System Monitoring
-  C2ServerPanel   -->   Command & Control Panel
-  DetectionPanel  -->   security detection system
-  ShellPanel      -->   Interactive shell interface
-  KeyloggingPanel -->   capturing the keystrokes
-  DBLogger        -->   Mysql DB (with dedicated user access)
+Attack Simulation:
 
-Attack Simulation :
+Virus Button --> Simulates file deletion (victim files removed), shows popup on Detection and C2 panels
+Keylogger Button --> Starts keystroke capture on victim; keystrokes forwarded to C2/Attacker UI
+Ransomware Button --> Encrypts files (simulation) and shows fullscreen “locked / ransom” page
+Botnet Button --> Triggers periodic/continuous C2-driven popups or tasks on victim
+Shell Button --> Establishes a reverse shell for interactive command execution
 
-  Virus Button        -->  File deletion simulation
-  Keylogger Button    -->  Keystrokes Capture
-  Randsomware Button  -->  Encrypt files
-  Botnet Button       -->  C2 Communication
-  Shell Button        -->  Reverse shell
+Tech Stack:
 
-Tech Stack :
+Language : Java
+GUI : Java Swing
+Networking : Java Sockets (client/server C2)
+Concurrency : Swing EDT + background threads
+Data Handling : Java object serialization (messages)
+Persistence : JDBC/MySQL via DBLogger
 
-  Language      : java
-  GUI           : java Swing
-  Networking    : Java Socket
-  Concurrency   : EDT
-  Data Handling : java Serialization
+Working (summary):
 
-Working : 
+Attacker issues commands via AttackerPanel → C2Server relays to selected Victim.
 
-  Virus -> Deleting a file , popup from detection panel ,popup from c2 panel
-  Keylogger -> open the shell for the victim , type anything captured in C2
-  Randsomware -> encrypt the files , view fullscreen locked randsom bitcoin page
-  Botnet -> limited popup continuosly 
-  ReverseShell -> getting a victim shell and interactions
+Victim executes commands (delete/encrypt/popups/keylog/shell) and reports status back.
 
+DetectionPanel shows alerts; DBLogger records events to MySQL.
 
-
-****************************************************************
+Designed as an educational simulation — run in an isolated VM only.
