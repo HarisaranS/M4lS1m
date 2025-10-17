@@ -1,50 +1,77 @@
-// C2Server.java 
-import java.net.*;
-import java.io.*;
 import javax.swing.*;
+import java.awt.*;
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class C2Server {
-    public static void main(String[] args) throws Exception {
-        final int PORT = PORT_NUMBER;
-        ServerSocket ss = new ServerSocket(PORT);
-        System.out.println("=== C2 Server === listening on port " + PORT);
+public class C2ServerGUI {
+    private final int PORT = 7000;
+    private JFrame frame;
+    private JTextArea ta;
 
-        while (true) {
-            Socket s = ss.accept();
-            System.out.println("[C2] Victim connected: " + s.getInetAddress());
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new C2ServerGUI().start());
+    }
 
-            // --- Print SimShell connected only once ---
-            System.out.println("[C2] Connected to SimShell");
+    private void start() {
+        frame = new JFrame("C2 Server (GUI)");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(700, 450);
+        ta = new JTextArea();
+        ta.setEditable(false);
+        frame.add(new JScrollPane(ta), BorderLayout.CENTER);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
 
-            BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
-            String line;
-            while ((line = br.readLine()) != null) {
-                System.out.println("[C2] " + line);
+        new Thread(this::runServer).start();
+    }
 
-                String l = line.toLowerCase();
-                if (l.contains("keylogger") || l.contains("botnet") || l.contains("ransomware")) {
-                    final String capturedLine = line;
-                    SwingUtilities.invokeLater(() -> {
-                        JFrame f = new JFrame("C2 Update");
-                        f.setSize(520, 200);
-                        f.setAlwaysOnTop(true);
-                        f.setLocationRelativeTo(null);
-                        JTextArea ta = new JTextArea(capturedLine);
-                        ta.setEditable(false);
-                        f.add(new JScrollPane(ta));
-                        f.setVisible(true);
+    private void append(String s) {
+        SwingUtilities.invokeLater(() -> ta.append(s + "\n"));
+          DBLogger.log("C2Server", s, "INFO");
+    }
 
-                        new Timer().schedule(new TimerTask() {
-                            public void run() { f.dispose(); }
-                        }, 5000);
-                    });
+    private void runServer() {
+        try (ServerSocket ss = new ServerSocket(PORT)) {
+            append("=== C2 Server === listening on port " + PORT);
+            while (true) {
+                Socket s = ss.accept();
+                append("[C2] Victim connected: " + s.getInetAddress());
+                BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    append("[C2] " + line);
+                    String l = line.toLowerCase();
+                    if (l.contains("keylogger") || l.contains("botnet") || l.contains("ransomware")) {  
+			 final String copy = line;
+                        SwingUtilities.invokeLater(() -> showPopup(copy));
+                    }
                 }
+                append("[C2] Victim disconnected.");
+                br.close();
+                s.close();
             }
-            br.close();
-            s.close();
-            System.out.println("[C2] Victim disconnected.");
+        } catch (IOException e) {
+            append("[C2] error: " + e.getMessage());
         }
     }
+
+	private void showPopup(String text) {
+    JFrame f = new JFrame("C2 Update");
+    f.setSize(520, 200);
+    f.setAlwaysOnTop(true);
+    f.setLocationRelativeTo(null);
+    JTextArea ta2 = new JTextArea(text);
+    ta2.setEditable(false);
+    f.add(new JScrollPane(ta2));
+    f.setVisible(true);
+    new java.util.Timer().schedule(new java.util.TimerTask() {
+        public void run() { f.dispose(); }
+    }, 5000);
 }
+
+
+}
+
