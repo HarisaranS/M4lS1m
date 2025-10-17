@@ -1,7 +1,8 @@
-## **M4l$1m** is an educational Java project that simulates a small Command & Control (C2) ecosystem with attacker, victim, and detection GUIs. It's intended for learning and demonstration only — not for real-world malicious activity.
+
+**M4lS1m** is an educational Java project that simulates a small Command & Control (C2) ecosystem with attacker, victim, and detection GUIs. It's intended for learning and demonstration only — not for real-world malicious activity.
 
 ##  Project Overview
-M4l$1m demonstrates common C2 concepts using Java Swing GUIs and Java sockets. The simulation includes:
+M4lS1m demonstrates common C2 concepts using Java Swing GUIs and Java sockets. The simulation includes:
 
 - **AttackerPanel** — attacker control UI to send simulated commands.
 - **VictimPanel** — victim client that executes simulations (file deletion, encryption, keylogging, popups, reverse shell simulation).
@@ -64,17 +65,17 @@ java -cp .:/usr/bin/java/mysql-connector-java-x.x.xx.jar Attacker
 If you plan to enable DB logging, create a dedicated DB and user with minimal privileges. Example MySQL commands:
 
 ```sql
-CREATE DATABASE M4l$1m;
-CREATE USER 'M4l$1m_user'@'localhost' IDENTIFIED BY 'StrongPasswordHere';
-GRANT INSERT, SELECT, UPDATE ON M4l$1m.* TO 'M4l$1m_user'@'localhost';
+CREATE DATABASE M4lS1m;
+CREATE USER 'M4lS1m_user'@'localhost' IDENTIFIED BY 'StrongPasswordHere';
+GRANT INSERT, SELECT, UPDATE ON M4lS1m.* TO 'M4lS1m_user'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
 Edit `DBLogger.java` (or a config file if present) to set the JDBC URL, username and password, for example:
 
 ```java
-String url = "jdbc:mysql://localhost:3306/M4l$1m?serverTimezone=UTC";
-String user = "M4l$1m_user";
+String url = "jdbc:mysql://localhost:3306/M4lS1m?serverTimezone=UTC";
+String user = "M4lS1m_user";
 String pass = "StrongPasswordHere";
 ```
 
