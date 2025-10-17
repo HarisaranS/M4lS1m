@@ -1,3 +1,4 @@
+## M4lS1m Interactive C2 Simulation Lab
 
 **M4lS1m** is an educational Java project that simulates a small Command & Control (C2) ecosystem with attacker, victim, and detection GUIs. It's intended for learning and demonstration only — not for real-world malicious activity.
 
